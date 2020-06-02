@@ -31,7 +31,7 @@ export default function index({}: Props): ReactElement {
   return (
     <div>
       <Head>
-        <title>CMNextStock</title>
+        <title>Home</title>
       </Head>
       <h1>Home</h1>
       <div className={classes.root}>
