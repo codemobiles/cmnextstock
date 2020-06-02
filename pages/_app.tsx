@@ -3,8 +3,8 @@ import App from "next/app";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-//lek
-//Care1
+//lek1
+//Care
 interface Props {}
 
 function CMApp({ Component, pageProps }: AppProps) {
