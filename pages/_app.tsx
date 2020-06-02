@@ -10,6 +10,9 @@ interface Props {}
 function CMApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <title>CMNextStock</title>
+      </Head>
       <Component {...pageProps} />
     </>
   );
