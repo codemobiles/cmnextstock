@@ -3,7 +3,7 @@ import App from "next/app";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-//lek1
+//lek2
 //Care
 interface Props {}
 
