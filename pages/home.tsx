@@ -34,6 +34,7 @@ export default function index({}: Props): ReactElement {
         <title>Home</title>
       </Head>
       <h1>Home</h1>
+      <span className="">lek</span>
       <div className={classes.root}>
         <Button variant="contained">Default</Button>
         <Button variant="contained" color="primary">
