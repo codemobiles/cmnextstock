@@ -15,5 +15,11 @@ export default function Error({ statusCode }: Props): ReactElement {
 // Called in server-side
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
+  if (statusCode == 404) {
+    res.writeHead(301, { Location: "/" });
+    res.end();
+    return {};
+  } else {
+    return { statusCode };
+  }
 };
