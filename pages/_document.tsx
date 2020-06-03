@@ -6,6 +6,11 @@ export default class CMDoc extends Document {
       <html>
         <Head>
           <meta charSet="utf-8" />
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/assets/img/favicon.png"
+          />
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
