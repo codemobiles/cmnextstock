@@ -34,8 +34,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
 export default function Login({}: Props): ReactElement {
   const classes = useStyles();
+  const onClickLogin = () => {
+    Router.push("/stock");
+  };
 
   return (
     <React.Fragment>
@@ -76,6 +80,7 @@ export default function Login({}: Props): ReactElement {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={onClickLogin}
               >
                 Sign In
               </Button>
