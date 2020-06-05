@@ -35,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const onClickLogin = () => {
+  Router.push("/stock");
+};
+
 export default function Login({}: Props): ReactElement {
   const classes = useStyles();
-  const onClickLogin = () => {
-    Router.push("/stock");
-  };
 
   return (
     <React.Fragment>
