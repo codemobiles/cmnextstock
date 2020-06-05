@@ -11,7 +11,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { TextField } from "@material-ui/core";
-
 import Router from "next/router";
 
 interface Props {}
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-export default function Login({}: Props): ReactElement {
+export default function Register({}: Props): ReactElement {
   const classes = useStyles();
 
   return (
@@ -43,7 +42,7 @@ export default function Login({}: Props): ReactElement {
         <Card className={classes.root}>
           <CardMedia
             className={classes.media}
-            image="/static/img/next_login.jpg"
+            image="/static/img/next_register.jpg"
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -77,17 +76,18 @@ export default function Login({}: Props): ReactElement {
                 color="primary"
                 className={classes.submit}
               >
-                Sign In
+                Register
               </Button>
               <Button
                 fullWidth
                 size="small"
                 color="primary"
                 onClick={() => {
-                  Router.push("/register");
+                  // Router.back();
+                  Router.push("/login");
                 }}
               >
-                Register
+                Cancel
               </Button>
             </form>
           </CardContent>
