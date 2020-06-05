@@ -14,6 +14,13 @@ export default function Layout({ children }: Props): ReactElement {
       <Menu />
       {children}
       <Footer />
+      <style jsx global>
+        {`
+          body {
+            margin: 0px;
+          }
+        `}
+      </style>
     </React.Fragment>
   );
 }
