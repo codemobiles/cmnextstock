@@ -1,11 +1,15 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, StyleHTMLAttributes } from "react";
 
-interface Props {}
+interface Props {
+  style?: React.CSSProperties;
+}
 
-export default function Footer({}: Props): ReactElement {
+export default function Footer({ style }: Props): ReactElement {
   return (
-    <div>
-      <h1>Footer</h1>
+    <div style={style}>
+      <span>
+        Copyright © 2020 CodeMobiles Co., Ltd. All Rights Reserved. reserved.
+      </span>
     </div>
   );
 }
