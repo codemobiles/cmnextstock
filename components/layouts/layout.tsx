@@ -2,17 +2,44 @@ import React, { ReactElement, ReactNode } from "react";
 import Header from "./header";
 import Menu from "./menu";
 import Footer from "./footer";
+import { Toolbar, Container } from "@material-ui/core";
+import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 
 interface Props {
   children: ReactNode;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+    },
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+  })
+);
 export default function Layout({ children }: Props): ReactElement {
+  const classes = useStyles();
+
   return (
     <React.Fragment>
       <Header />
       <Menu />
-      {children}
+      <main className={classes.content}>
+        <Toolbar />
+        <Container
+          style={{
+            backgroundColor: "red",
+          }}
+        >
+          {children}
+        </Container>
+      </main>
       <Footer
         style={{
           position: "fixed",

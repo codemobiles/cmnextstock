@@ -7,7 +7,7 @@ interface Props {
 export default function Footer({ style }: Props): ReactElement {
   return (
     <div style={style}>
-      <span>
+      <span style={{ paddingLeft: 240 }}>
         Copyright © 2020 CodeMobiles Co., Ltd. All Rights Reserved. reserved.
       </span>
     </div>
