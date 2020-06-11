@@ -22,7 +22,13 @@ export default function Stock({}: Props): ReactElement {
     },
     {
       title: "IMAGE",
-      field: "image",
+      cellStyle: { padding: 5 },
+      render: (item) => (
+        <img
+          src="http://www.codemobiles.com/biz/images/cm_logo.png?ref=10"
+          style={{ width: 50, height: 50, borderRadius: "5%" }}
+        />
+      ),
     },
     {
       title: "NAME",
