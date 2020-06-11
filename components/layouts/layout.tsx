@@ -33,13 +33,7 @@ export default function Layout({ children }: Props): ReactElement {
       <Menu />
       <main className={classes.content}>
         <Toolbar />
-        <Container
-          style={{
-            backgroundColor: "red",
-          }}
-        >
-          {children}
-        </Container>
+        <Container>{children}</Container>
       </main>
       <Footer
         style={{
