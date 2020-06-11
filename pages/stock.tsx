@@ -5,6 +5,8 @@ import Layout from "../components/layouts/layout";
 import MaterialTable from "material-table";
 import { products } from "./api/dummy";
 import { Typography } from "@material-ui/core";
+import Moment from "react-moment";
+import NumberFormat from "react-number-format";
 
 interface Props {}
 
@@ -29,15 +31,41 @@ export default function Stock({}: Props): ReactElement {
     },
     {
       title: "PRICE",
-      field: "price",
+      render: (item) => (
+        <Typography variant="body1">
+          <NumberFormat
+            value={item.price}
+            displayType={"text"}
+            thousandSeparator={true}
+            decimalScale={2}
+            fixedDecimalScale={true}
+            prefix={"฿"}
+          />
+        </Typography>
+      ),
     },
     {
       title: "STOCK",
-      field: "stock",
+      render: (item) => (
+        <Typography variant="body1">
+          <NumberFormat
+            value={item.stock}
+            displayType={"text"}
+            thousandSeparator={true}
+            decimalScale={0}
+            fixedDecimalScale={true}
+            suffix={" pcs"}
+          />
+        </Typography>
+      ),
     },
     {
       title: "CREATED",
-      field: "updatedAt",
+      render: (item) => (
+        <Typography>
+          <Moment format="DD/MM/YYYY">{item.updatedAt}</Moment>
+        </Typography>
+      ),
     },
   ];
 
