@@ -31,5 +31,126 @@ const useStyles = makeStyles((theme) => ({
 interface Props {}
 
 export default function StockCreate({}: Props): ReactElement {
-  return <Layout>Create</Layout>;
+  const classes = useStyles();
+
+  const showPreviewImage = (values) => {
+    if (values.file_obj) {
+      return (
+        <img src={values.file_obj} style={{ height: 100, marginTop: 16 }} />
+      );
+    }
+  };
+
+  const showForm = ({ values, setFieldValue, isValid, dirty }) => {
+    return (
+      <Form>
+        <Card className={classes.card}>
+          <CardContent>
+            <Typography gutterBottom variant="h3">
+              Create Stock
+            </Typography>
+
+            <Field
+              className={classes.field}
+              fullWidth
+              component={TextField}
+              name="name"
+              type="text"
+              label="Name"
+            />
+            <br />
+            <Field
+              className={classes.field}
+              fullWidth
+              component={TextField}
+              name="price"
+              type="number"
+              label="Price"
+            />
+
+            <Field
+              className={classes.field}
+              fullWidth
+              component={TextField}
+              name="stock"
+              type="number"
+              label="Stock"
+            />
+
+            <div>{showPreviewImage(values)}</div>
+
+            <div className={classes.field}>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/ic_photo.png`}
+                style={{ width: 25, height: 20 }}
+              />
+              <span
+                style={{ color: "#00B0CD", marginLeft: 10, marginRight: 10 }}
+              >
+                Add Picture
+              </span>
+              <input
+                type="file"
+                onChange={(e) => {
+                  e.preventDefault();
+                  setFieldValue("file", e.target.files[0]); // for upload
+                  setFieldValue(
+                    "file_obj",
+                    URL.createObjectURL(e.target.files[0])
+                  ); // for preview image
+                }}
+                name="image"
+                click-type="type1"
+                className="picupload"
+                multiple
+                accept="image/*"
+                id="files"
+                style={{ padding: "20px 0" }}
+              />
+            </div>
+          </CardContent>
+          <CardActions>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={!(isValid && dirty)}
+            >
+              Create
+            </Button>
+            <Button>Cancel</Button>
+          </CardActions>
+        </Card>
+      </Form>
+    );
+  };
+
+  return (
+    <Layout>
+      <Formik
+        validate={(values) => {
+          let errors: any = {};
+          if (!values.name) errors.name = "กรุณาใส่ชื่อด้วย";
+          if (!values.stock) errors.stock = "กรุณาระบุจำนวน";
+          if (!values.price) errors.price = "กรุณาระบุราคา";
+          return errors;
+        }}
+        initialValues={{ name: "", stock: 10, price: 100 }}
+        onSubmit={(values: any, { setSubmitting }) => {
+          let formData = new FormData();
+          formData.append("name", values.name);
+          formData.append("price", values.price);
+          formData.append("stock", values.stock);
+          formData.append("image", values.file);
+          alert(JSON.stringify(values));
+          // dispatch(stockActions.addProduct(formData, props.history));
+          setSubmitting(false);
+        }}
+      >
+        {(props) => showForm(props)}
+      </Formik>
+
+      {/* /.content */}
+    </Layout>
+  );
 }
