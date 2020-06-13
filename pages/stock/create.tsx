@@ -9,12 +9,12 @@ import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
 import { Formik, Form, Field } from "formik";
-import { TextField } from "formik-material-ui";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import { TextField } from "formik-material-ui";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -128,29 +128,32 @@ export default function StockCreate({}: Props): ReactElement {
   return (
     <Layout>
       <Formik
-        validate={(values) => {
-          let errors: any = {};
-          if (!values.name) errors.name = "กรุณาใส่ชื่อด้วย";
-          if (!values.stock) errors.stock = "กรุณาระบุจำนวน";
-          if (!values.price) errors.price = "กรุณาระบุราคา";
-          return errors;
-        }}
-        initialValues={{ name: "", stock: 10, price: 100 }}
+        initialValues={{ name: "", price: 10, stock: 100 }}
         onSubmit={(values: any, { setSubmitting }) => {
-          let formData = new FormData();
-          formData.append("name", values.name);
-          formData.append("price", values.price);
-          formData.append("stock", values.stock);
-          formData.append("image", values.file);
           alert(JSON.stringify(values));
-          // dispatch(stockActions.addProduct(formData, props.history));
-          setSubmitting(false);
+          setSubmitting(true);
+          setTimeout(() => {
+            setSubmitting(false);
+          }, 3000);
         }}
       >
-        {(props) => showForm(props)}
+        {({ isSubmitting }) => (
+          <Form>
+            <Field component={TextField} name="name" label="Name" fullWidth />
+            <br />
+            <br />
+            <Field component={TextField} name="price" label="Price" fullWidth />
+            <br />
+            <br />
+            <Field component={TextField} name="stock" label="Stock" fullWidth />
+            <br />
+            <br />
+            <Button variant="contained" type="submit" disabled={isSubmitting}>
+              Submit
+            </Button>
+          </Form>
+        )}
       </Formik>
-
-      {/* /.content */}
     </Layout>
   );
 }
