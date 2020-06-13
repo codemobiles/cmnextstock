@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import Layout from "../../components/layouts/layout";
+import Layout from "../../../components/layouts/layout";
 import { GetServerSideProps } from "next";
 
 interface Props {
