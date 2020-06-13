@@ -2,11 +2,12 @@ import React, { ReactElement } from "react";
 import Header from "../components/layouts/header";
 import Menu from "../components/layouts/menu";
 import Layout from "../components/layouts/layout";
-import MaterialTable from "material-table";
+import MaterialTable, { Action } from "material-table";
 import { products } from "./api/dummy";
 import { Typography } from "@material-ui/core";
 import Moment from "react-moment";
 import NumberFormat from "react-number-format";
+import { Edit, DeleteOutline } from "@material-ui/icons";
 
 interface Props {}
 
@@ -32,7 +33,7 @@ export default function Stock({}: Props): ReactElement {
     },
     {
       title: "NAME",
-      cellStyle: { minWidth: 700 },
+      cellStyle: { minWidth: 500 },
       render: (item) => <Typography variant="body1">{item.name}</Typography>,
     },
     {
@@ -75,9 +76,29 @@ export default function Stock({}: Props): ReactElement {
     },
   ];
 
+  const actions: Action<any>[] = [
+    {
+      icon: () => <Edit />,
+      iconProps: { color: "secondary" },
+      tooltip: "Edit",
+      onClick: (event, rowData) => {},
+    },
+    {
+      icon: () => <DeleteOutline />,
+      iconProps: { color: "action" },
+      tooltip: "Delete",
+      onClick: (event, rowData) => {},
+    },
+  ];
+
   return (
     <Layout>
-      <MaterialTable columns={columns} data={products} title="Courses" />
+      <MaterialTable
+        columns={columns}
+        data={products}
+        title="Courses"
+        actions={actions}
+      />
     </Layout>
   );
 }
