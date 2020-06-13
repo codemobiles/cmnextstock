@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
-import Header from "../components/layouts/header";
-import Menu from "../components/layouts/menu";
-import Layout from "../components/layouts/layout";
+import Header from "../../components/layouts/header";
+import Menu from "../../components/layouts/menu";
+import Layout from "../../components/layouts/layout";
 import MaterialTable, { Action, MTableToolbar } from "material-table";
-import { products } from "./api/dummy";
+import { products } from "../api/dummy";
 import { Typography, Chip, Button } from "@material-ui/core";
 import Moment from "react-moment";
 import NumberFormat from "react-number-format";
