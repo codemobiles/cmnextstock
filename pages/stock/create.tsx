@@ -128,6 +128,13 @@ export default function StockCreate({}: Props): ReactElement {
   return (
     <Layout>
       <Formik
+        validate={(values) => {
+          let errors: any = {};
+          if (!values.name) errors.name = "Enter name";
+          if (values.stock <= 0) errors.stock = "Enter stock";
+          if (!values.price) errors.price = "Enter price";
+          return errors;
+        }}
         initialValues={{ name: "", price: 10, stock: 100 }}
         onSubmit={(values: any, { setSubmitting }) => {
           alert(JSON.stringify(values));
@@ -145,7 +152,13 @@ export default function StockCreate({}: Props): ReactElement {
             <Field component={TextField} name="price" label="Price" fullWidth />
             <br />
             <br />
-            <Field component={TextField} name="stock" label="Stock" fullWidth />
+            <Field
+              component={TextField}
+              type="number"
+              name="stock"
+              label="Stock"
+              fullWidth
+            />
             <br />
             <br />
             <Button variant="contained" type="submit" disabled={isSubmitting}>
