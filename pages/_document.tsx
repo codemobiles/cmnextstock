@@ -26,7 +26,7 @@ export default class CMDoc extends Document {
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
         </Head>
-        <body>
+        <body style={{ backgroundColor: "#f1f1f1" }}>
           <Main />
           <NextScript />
         </body>
@@ -44,7 +44,6 @@ CMDoc.getInitialProps = async (ctx) => {
       enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
     });
 
-    
   const initialProps = await Document.getInitialProps(ctx);
   return {
     ...initialProps,
