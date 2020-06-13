@@ -144,28 +144,7 @@ export default function StockCreate({}: Props): ReactElement {
           }, 3000);
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <Field component={TextField} name="name" label="Name" fullWidth />
-            <br />
-            <br />
-            <Field component={TextField} name="price" label="Price" fullWidth />
-            <br />
-            <br />
-            <Field
-              component={TextField}
-              type="number"
-              name="stock"
-              label="Stock"
-              fullWidth
-            />
-            <br />
-            <br />
-            <Button variant="contained" type="submit" disabled={isSubmitting}>
-              Submit
-            </Button>
-          </Form>
-        )}
+        {(props) => showForm(props)}
       </Formik>
     </Layout>
   );
