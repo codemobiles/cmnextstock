@@ -81,7 +81,7 @@ export default function StockCreate({}: Props): ReactElement {
 
             <div className={classes.field}>
               <img
-                src={`${process.env.PUBLIC_URL}/images/ic_photo.png`}
+                src="/static/img/ic_photo.png"
                 style={{ width: 25, height: 20 }}
               />
               <span
@@ -137,7 +137,13 @@ export default function StockCreate({}: Props): ReactElement {
         }}
         initialValues={{ name: "", price: 10, stock: 100 }}
         onSubmit={(values: any, { setSubmitting }) => {
-          alert(JSON.stringify(values));
+          let formData = new FormData();
+          formData.append("name", values.name);
+          formData.append("price", values.price);
+          formData.append("stock", values.stock);
+          formData.append("image", values.file);
+          //   alert(JSON.stringify(values));
+
           setSubmitting(true);
           setTimeout(() => {
             setSubmitting(false);
