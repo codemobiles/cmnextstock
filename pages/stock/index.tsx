@@ -8,6 +8,7 @@ import { Typography, Chip, Button } from "@material-ui/core";
 import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
+import Router from "next/router";
 
 interface Props {}
 
@@ -98,7 +99,14 @@ export default function Stock({}: Props): ReactElement {
             <div>
               <MTableToolbar {...props} />
               <div style={{ padding: "0px 10px" }}>
-                <Button fullWidth variant="contained" color="primary">
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    Router.push("/stock/create");
+                  }}
+                >
                   Create
                 </Button>
               </div>
