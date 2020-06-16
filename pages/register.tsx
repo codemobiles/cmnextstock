@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import loginStyle from "../styles/login.style";
 import loginCSS from "../public/static/css/login.module.css";
 
@@ -33,8 +33,18 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+interface IAccount {
+  username: string;
+  password: string;
+}
+
 export default function Register({}: Props): ReactElement {
   const classes = useStyles();
+  const [account, setAccount] = useState<IAccount>({
+    username: "",
+    password: "",
+  });
 
   return (
     <React.Fragment>
@@ -52,6 +62,10 @@ export default function Register({}: Props): ReactElement {
                 margin="normal"
                 required
                 fullWidth
+                value={account.username}
+                onChange={(e) => {
+                  setAccount({ ...account, username: e.target.value });
+                }}
                 id="username"
                 label="Username"
                 autoComplete="email"
@@ -62,6 +76,10 @@ export default function Register({}: Props): ReactElement {
                 margin="normal"
                 required
                 fullWidth
+                value={account.password}
+                onChange={(e) => {
+                  setAccount({ ...account, password: e.target.value });
+                }}
                 name="password"
                 label="Password"
                 type="password"
@@ -74,6 +92,9 @@ export default function Register({}: Props): ReactElement {
                 fullWidth
                 variant="contained"
                 color="primary"
+                onClick={() => {
+                  alert(JSON.stringify(account));
+                }}
                 className={classes.submit}
               >
                 Register
