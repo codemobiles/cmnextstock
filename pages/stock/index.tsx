@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import Header from "../../components/layouts/header";
 import Menu from "../../components/layouts/menu";
 import Layout from "../../components/layouts/layout";
@@ -9,6 +9,7 @@ import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
 import Router from "next/router";
+import axios from "axios";
 
 interface Props {}
 
@@ -95,12 +96,22 @@ export default function Stock({}: Props): ReactElement {
       onClick: (event, rowData) => {},
     },
   ];
+  const [data, setData] = React.useState([]);
+
+  const loadData = async () => {
+    const result = await axios.get("/api/products");
+    // alert(JSON.stringify(result.data));
+    setData(result.data);
+  };
+  React.useEffect(() => {
+    loadData();
+  }, []);
 
   return (
     <Layout>
       <MaterialTable
         columns={columns}
-        data={products}
+        data={data ? data : []}
         title="Stock"
         actions={actions}
         components={{
