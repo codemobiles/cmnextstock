@@ -103,6 +103,7 @@ export default function Stock({}: Props): ReactElement {
     // alert(JSON.stringify(result.data));
     setData(result.data);
   };
+
   React.useEffect(() => {
     loadData();
   }, []);
