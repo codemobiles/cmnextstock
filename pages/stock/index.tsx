@@ -84,25 +84,15 @@ export default function Stock({}: Props): ReactElement {
         //   query: { id: rowData.id },
         // });
 
-        // Router.push(`/stock`, `/stock/edit?id=${rowData.id}`);
-        Router.push("/stock/[action]/[id]", "/stock/action2/11");
+        Router.push(`/stock/edit?id=${rowData.id}`);
+        // Router.push("/stock/[action]/[id]", "/stock/action2/11");
       },
     },
     {
       icon: () => <DeleteOutline color="secondary" />,
       iconProps: { color: "action" },
       tooltip: "Delete",
-      onClick: (event, rowData) => {
-        Router.push("/stock/[action]/[id]", "/stock/action3/22");
-      },
-    },
-    {
-      icon: () => <DeleteOutline color="secondary" />,
-      iconProps: { color: "action" },
-      tooltip: "Delete",
-      onClick: (event, rowData) => {
-        Router.push("/stock/update/22");
-      },
+      onClick: (event, rowData) => {},
     },
   ];
 
