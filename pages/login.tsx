@@ -10,7 +10,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { TextField } from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import { Formik, Form, Field } from "formik";
 
 import Router from "next/router";
 
@@ -42,6 +43,56 @@ const onClickLogin = () => {
 export default function Login({}: Props): ReactElement {
   const classes = useStyles();
 
+  const showForm = (props) => {
+    return (
+      <Form>
+        <Field
+          component={TextField}
+          name="username"
+          margin="normal"
+          required
+          fullWidth
+          id="username"
+          label="Username"
+          autoComplete="email"
+          autoFocus
+        />
+        <Field
+          component={TextField}
+          name="password"
+          margin="normal"
+          required
+          fullWidth
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+        />
+
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={onClickLogin}
+        >
+          Sign In
+        </Button>
+        <Button
+          fullWidth
+          size="small"
+          color="primary"
+          onClick={() => {
+            Router.push("/register");
+          }}
+        >
+          Register
+        </Button>
+      </Form>
+    );
+  };
+
   return (
     <React.Fragment>
       <div className={classes.container}>
@@ -52,50 +103,14 @@ export default function Login({}: Props): ReactElement {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <form noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={onClickLogin}
-              >
-                Sign In
-              </Button>
-              <Button
-                fullWidth
-                size="small"
-                color="primary"
-                onClick={() => {
-                  Router.push("/register");
-                }}
-              >
-                Register
-              </Button>
-            </form>
+            <Formik
+              initialValues={{ username: "", password: "" }}
+              onSubmit={(values) => {
+                alert(JSON.stringify(values));
+              }}
+            >
+              {(props) => showForm(props)}
+            </Formik>
           </CardContent>
         </Card>
 
