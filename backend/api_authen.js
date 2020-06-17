@@ -44,4 +44,5 @@ router.get("/users", async (req, res) => {
   let result = await user.findAll();
   res.json(result);
 });
+
 module.exports = router;
