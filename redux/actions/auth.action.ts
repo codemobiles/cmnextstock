@@ -11,14 +11,18 @@ export const setAuthen = (payload) => ({
 
 // register user
 const register = ({ username, password }, type) => {
-    return dispatch=>{
-        dispatch(setAuthen({ token: "1234" }))
-        Router.push('/login');
+    return dispatch => {
+
+        setTimeout(() => {
+            dispatch(setAuthen({ token: "1234" }))
+            Router.push('/login');
+        }, 5000)
+
     }
 }
 
 
 
 export default {
-    register,    
+    register,
 };
