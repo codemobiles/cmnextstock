@@ -14,7 +14,6 @@ import { TextField } from "@material-ui/core";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../redux/actions";
-
 interface Props {}
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +47,7 @@ export default function Register({}: Props): ReactElement {
     password: "",
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <React.Fragment>
@@ -97,9 +96,7 @@ export default function Register({}: Props): ReactElement {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  alert(JSON.stringify(account));
-                  dispatch(actions.register({ ...account }, "authen/register"));
-
+                  dispatch(actions.register(account));
                 }}
                 className={classes.submit}
               >
