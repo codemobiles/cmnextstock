@@ -12,8 +12,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { TextField } from "formik-material-ui";
 import { Formik, Form, Field } from "formik";
-import { useSelector } from "react-redux";
 import Router from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import actions from "../redux/actions";
 
 interface Props {}
 
@@ -36,14 +37,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const onClickLogin = () => {
-  Router.push("/stock");
-};
-
 export default function Login({}: Props): ReactElement {
   const classes = useStyles();
 
-  const showForm = (props) => {
+  const dispatch = useDispatch();
+  const loginReducer = useSelector(({ loginReducer }) => loginReducer);
+
+  const showForm = ({ values, setFieldValue, isValid, dirty }) => {
     return (
       <Form>
         <Field
@@ -70,12 +70,14 @@ export default function Login({}: Props): ReactElement {
         />
 
         <Button
-          type="submit"
+          type="button"
           fullWidth
           variant="contained"
           color="primary"
           className={classes.submit}
-          onClick={onClickLogin}
+          onClick={() => {
+            dispatch(actions.login(values));
+          }}
         >
           Sign In
         </Button>
