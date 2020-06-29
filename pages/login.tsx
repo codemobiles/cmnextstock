@@ -43,8 +43,6 @@ const onClickLogin = () => {
 export default function Login({}: Props): ReactElement {
   const classes = useStyles();
 
-  const authReducer = useSelector(({ authReducer }) => authReducer);
-
   const showForm = (props) => {
     return (
       <Form>
@@ -91,8 +89,6 @@ export default function Login({}: Props): ReactElement {
         >
           Register
         </Button>
-
-        {authReducer.token && <span>{authReducer.token}</span>}
       </Form>
     );
   };

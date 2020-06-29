@@ -14,6 +14,8 @@ import { TextField } from "@material-ui/core";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../redux/actions";
+import Alert from "@material-ui/lab/Alert";
+
 interface Props {}
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +50,7 @@ export default function Register({}: Props): ReactElement {
   });
 
   const dispatch = useDispatch();
+  const registerReducer = useSelector((state) => state.registerReducer);
 
   return (
     <React.Fragment>
@@ -113,6 +116,10 @@ export default function Register({}: Props): ReactElement {
               >
                 Cancel
               </Button>
+
+              {registerReducer.isFailed && (
+                <Alert severity="error">Register failed!</Alert>
+              )}
             </form>
           </CardContent>
         </Card>

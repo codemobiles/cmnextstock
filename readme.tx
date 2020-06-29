@@ -11,3 +11,4 @@ yarn add @material-ui/icons
 
  #Install redux for nextJS
  yarn add redux react-redux redux-thunk redux-saga next-redux-wrapper redux-devtools-extension
+ yarn add @material-ui/lab
