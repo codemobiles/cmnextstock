@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
         case LOGIN_FAILED:
             return { ...state, result: null, isFetching: false, isFailed: true }
         case LOGIN_SUCCESS:
-            return { ...state, result: payload.result, isFetching: false, isFailed: true }
+            return { ...state, result: payload.result, isFetching: false, isFailed: true, token: payload.token, username: payload.username }
         case LOGOUT_SUCCESS:
             return initialState
         default:

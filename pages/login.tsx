@@ -15,6 +15,8 @@ import { Formik, Form, Field } from "formik";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../redux/actions";
+import { NextPageContext } from "next";
+import { getCookie } from "../utils/cookie";
 
 interface Props {
   token?: string;
@@ -46,6 +48,7 @@ export default function Login({ token }: Props): ReactElement {
   const loginReducer = useSelector(({ loginReducer }) => loginReducer);
 
   React.useEffect(() => {
+    debugger;
     dispatch(actions.relogin({ token }));
   }, []);
 
@@ -138,3 +141,14 @@ export default function Login({ token }: Props): ReactElement {
     </React.Fragment>
   );
 }
+
+// Called in server-side
+Login.getInitialProps = (ctx: NextPageContext) => {
+  let token;
+  const isServer = !!ctx.req;
+  if (isServer && ctx.req.headers.cookie) {
+    token = getCookie("token", ctx.req);
+  }
+  console.log("CMCookie : token " + token);
+  return { token };
+};

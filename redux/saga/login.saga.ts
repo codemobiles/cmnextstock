@@ -14,7 +14,7 @@ export function* sagaLogin({ payload }: any) {
         const { result } = response.data
         if (result == kResultOk) {
             setCookie('token', response.data.token);
-            yield put(actions.loginSuccess({ result: response.data }))
+            yield put(actions.loginSuccess(response.data))
             Router.push('/stock')
         } else {
             yield put(actions.loginFailed())
@@ -27,9 +27,10 @@ export function* sagaLogin({ payload }: any) {
 export function* sagaReLogin({ payload }: any) {
     const state = yield select();
     yield delay(10)
-    if (state.loginReducer.token){
+    if (state.loginReducer.token) {
         Router.push('/stock')
     } else if (payload.token) {
+        debugger
         yield put(actions.loginSuccess(payload))
         Router.push('/stock')
     } else {
