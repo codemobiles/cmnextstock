@@ -21,3 +21,11 @@ export function* sagaLogin({ payload }: any) {
         yield put(actions.loginFailed())
     }
 }
+
+export function* sagaReLogin() {
+
+}
+
+export function* sagaLogout() {
+
+}
