@@ -10,6 +10,8 @@ import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
 import Router from "next/router";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import stockActions from "../../redux/actions";
 
 interface Props {}
 
@@ -24,7 +26,7 @@ export default function Stock({}: Props): ReactElement {
       cellStyle: { padding: 5 },
       render: (item) => (
         <img
-          src="http://www.codemobiles.com/biz/images/cm_logo.png?ref=10"
+          src={`${process.env.NEXT_PUBLIC_APP_BASE_IMAGE_URL}/${item.image}`}
           style={{ width: 50, height: 50, borderRadius: "5%" }}
         />
       ),
@@ -96,26 +98,19 @@ export default function Stock({}: Props): ReactElement {
       onClick: (event, rowData) => {},
     },
   ];
-  const [data, setData] = React.useState([]);
 
-  const loadData = async () => {
-    // const result = await axios.get("/api/products");
-    const result = await axios.get(
-      "http://localhost:8085/api/v2/stock/product"
-    );
-    // alert(JSON.stringify(result.data));
-    setData(result.data);
-  };
+  const stockListReducer = useSelector((state) => state.stockListReducer);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    loadData();
+    dispatch(stockActions.feedStockList());
   }, []);
 
   return (
     <Layout>
       <MaterialTable
         columns={columns}
-        data={data ? data : []}
+        data={stockListReducer.result ? stockListReducer.result : []}
         title="Stock"
         actions={actions}
         components={{
