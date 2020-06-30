@@ -16,6 +16,8 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Router from "next/router";
 const drawerWidth = 240;
+import actions from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -47,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Header() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -71,7 +74,7 @@ export default function Header() {
             aria-label="account of current user"
             aria-haspopup="true"
             onClick={() => {
-              Router.push("/login");
+              dispatch(actions.logout());
             }}
             color="inherit"
           >

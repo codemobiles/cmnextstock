@@ -16,7 +16,9 @@ import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../redux/actions";
 
-interface Props {}
+interface Props {
+  token?: string;
+}
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -37,11 +39,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login({}: Props): ReactElement {
+export default function Login({ token }: Props): ReactElement {
   const classes = useStyles();
 
   const dispatch = useDispatch();
   const loginReducer = useSelector(({ loginReducer }) => loginReducer);
+
+  React.useEffect(() => {
+    dispatch(actions.relogin({ token }));
+  }, []);
 
   const showForm = ({ values, setFieldValue, isValid, dirty }) => {
     return (

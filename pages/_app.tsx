@@ -14,4 +14,11 @@ function CMApp({ Component, pageProps }: AppProps) {
   );
 }
 
+CMApp.getInitialProps = async (appContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext);
+
+  return { ...appProps };
+};
+
 export default wrapper.withRedux(CMApp);
