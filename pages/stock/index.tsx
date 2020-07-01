@@ -26,7 +26,9 @@ export default function Stock({}: Props): ReactElement {
       cellStyle: { padding: 5 },
       render: (item) => (
         <img
-          src={`${process.env.NEXT_PUBLIC_APP_BASE_IMAGE_URL}/${item.image}`}
+          src={`${process.env.NEXT_PUBLIC_APP_BASE_IMAGE_URL}/${
+            item.image
+          }?version=${Math.random().toString()}`}
           style={{ width: 50, height: 50, borderRadius: "5%" }}
         />
       ),
