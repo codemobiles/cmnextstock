@@ -19,6 +19,7 @@ export default function Stock({}: Props): ReactElement {
   const columns = [
     {
       title: "ID",
+      field: "id",
       render: (item) => <Typography variant="body1">{item.id}</Typography>,
     },
     {
@@ -35,6 +36,7 @@ export default function Stock({}: Props): ReactElement {
     },
     {
       title: "NAME",
+      field: "name",
       cellStyle: { minWidth: 500 },
       render: (item) => <Typography variant="body1">{item.name}</Typography>,
     },
@@ -109,6 +111,7 @@ export default function Stock({}: Props): ReactElement {
         columns={columns}
         data={stockListReducer.result ? stockListReducer.result : []}
         title="Stock"
+        options={{ search: true }}
         actions={actions}
         components={{
           Toolbar: (props) => (
