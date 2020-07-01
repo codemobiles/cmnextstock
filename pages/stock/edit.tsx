@@ -17,8 +17,9 @@ import Button from "@material-ui/core/Button";
 import { TextField } from "formik-material-ui";
 import { GetServerSideProps, NextPageContext } from "next";
 import Router from "next/router";
-import httpClient from "../../utils/httpClient";
+import { useDispatch, useSelector } from "react-redux";
 import actions from "../../redux/actions";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "80%",
@@ -36,6 +37,7 @@ interface Props {
   name: string;
   price: number;
   stock: number;
+  image: string;
 }
 
 export default function StockEdit({
@@ -43,13 +45,21 @@ export default function StockEdit({
   name,
   price,
   stock,
+  image,
 }: Props): ReactElement {
   const classes = useStyles();
+  const stockEditReducer = useSelector((state) => state.stockEditReducer);
+  const dispatch = useDispatch();
 
   const showPreviewImage = (values) => {
     if (values.file_obj) {
+      return <img src={values.file_obj} style={{ height: 100 }} />;
+    } else if (values.image) {
       return (
-        <img src={values.file_obj} style={{ height: 100, marginTop: 16 }} />
+        <img
+          src={`${process.env.NEXT_PUBLIC_APP_BASE_IMAGE_URL}/${values.image}`}
+          style={{ height: 100, marginTop: 20 }}
+        />
       );
     }
   };
@@ -166,19 +176,17 @@ export default function StockEdit({
           return errors;
         }}
         enableReinitialize
-        initialValues={{ id, name, price, stock }}
+        initialValues={{ id, name, price, stock, image }}
         onSubmit={(values: any, { setSubmitting }) => {
           let formData = new FormData();
+          formData.append("id", values.id);
           formData.append("name", values.name);
           formData.append("price", values.price);
           formData.append("stock", values.stock);
-          formData.append("image", values.file);
-          //   alert(JSON.stringify(values));
-
-          setSubmitting(true);
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 3000);
+          if (values.file) {
+            formData.append("image", values.file);
+          }
+          dispatch(actions.editStock(formData));
         }}
       >
         {(props) => showForm(props)}
