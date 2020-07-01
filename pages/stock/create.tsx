@@ -15,7 +15,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { TextField } from "formik-material-ui";
 import { Formik, Form, Field } from "formik";
-
+import { useDispatch, useSelector } from "react-redux";
+import actions from "../../redux/actions";
 import Router from "next/router";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,8 @@ interface Props {}
 
 export default function StockCreate({}: Props): ReactElement {
   const classes = useStyles();
+  const stockCreateReducer = useSelector((state) => state.stockCreateReducer);
+  const dispatch = useDispatch();
 
   const showPreviewImage = (values) => {
     if (values.file_obj) {
@@ -150,12 +153,7 @@ export default function StockCreate({}: Props): ReactElement {
           formData.append("price", values.price);
           formData.append("stock", values.stock);
           formData.append("image", values.file);
-          //   alert(JSON.stringify(values));
-
-          setSubmitting(true);
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 3000);
+          dispatch(actions.createStock(formData));
         }}
       >
         {(props) => showForm(props)}

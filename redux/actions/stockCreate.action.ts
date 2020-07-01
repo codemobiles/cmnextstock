@@ -1,7 +1,8 @@
 import * as actionTypes from "../saga/actionTypes"
 
-export const createStock = () => ({
+export const createStock = (payload) => ({
     type: actionTypes.STOCK_CREATE_REQUEST,
+    payload
 })
 
 export const stockCreateFetching = () => ({
