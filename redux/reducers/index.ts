@@ -11,5 +11,5 @@ export default combineReducers({
     loginReducer,
     stockListReducer,
     stockCreateReducer,
-    stockEditReducer
+    stockEditReducer,
 });
