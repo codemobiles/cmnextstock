@@ -15,8 +15,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { TextField } from "formik-material-ui";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPageContext } from "next";
 import Router from "next/router";
+import httpClient from "../../utils/httpClient";
+import actions from "../../redux/actions";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "80%",
@@ -185,13 +187,13 @@ export default function StockEdit({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: NextPageContext
+) => {
+  const result = await actions.doGetStockById(context.query.id);
   return {
     props: {
-      id: context.query.id,
-      name: "",
-      price: 100,
-      stock: 10,
+      ...result,
     },
   };
 };

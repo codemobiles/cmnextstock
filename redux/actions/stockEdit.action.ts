@@ -1,4 +1,5 @@
 import * as actionTypes from "../saga/actionTypes"
+import httpClient from "../../utils/httpClient"
 
 export const editStock = () => ({
     type: actionTypes.STOCK_EDIT_REQUEST,
@@ -17,9 +18,16 @@ export const stockEditFailed = () => ({
     type: actionTypes.STOCK_EDIT_FAILED,
 })
 
+export const doGetStockById = async (id) => {
+    const response = await httpClient.get(`/stock/product/${id}`)
+    return response.data
+}
+
+
 export default {
     editStock,
     stockEditFetching,
     stockEditSuccess,
     stockEditFailed,
+    doGetStockById
 };
