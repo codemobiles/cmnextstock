@@ -1,8 +1,9 @@
 import * as actionTypes from "../saga/actionTypes"
 
-export const deleteStock = (payload) => ({
+export const deleteStock = (payload, dispatch) => ({
     type: actionTypes.STOCK_DELETE_REQUEST,
-    payload
+    payload,
+    dispatch
 })
 
 export default {
