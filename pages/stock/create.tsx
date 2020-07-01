@@ -18,6 +18,8 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../redux/actions";
 import Router from "next/router";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { StockCreateReducer } from "../../types/stockCreate.reducer.types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,9 +121,16 @@ export default function StockCreate({}: Props): ReactElement {
               variant="contained"
               color="primary"
               type="submit"
-              disabled={!(isValid && dirty)}
+              disabled={!(isValid && dirty) || stockCreateReducer.isFetching}
             >
               Create
+              {stockCreateReducer.isFetching && (
+                <CircularProgress
+                  color="secondary"
+                  size={20}
+                  style={{ marginLeft: 8 }}
+                />
+              )}
             </Button>
             <Button
               onClick={() => {
