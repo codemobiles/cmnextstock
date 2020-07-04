@@ -13,7 +13,8 @@ export function* sagaLogin({ payload }: any) {
         const response = yield call(httpClient.post, '/authen/login', payload)
         const { result } = response.data
         if (result == kResultOk) {
-            setCookie('token', response.data.token);
+            setCookie("token", response.data.token);
+            setCookie("username", response.data.username);
             yield put(actions.loginSuccess(response.data))
             Router.push('/stock')
         } else {
