@@ -30,10 +30,20 @@ uploadImage = async (files, doc) => {
 };
 
 // Get Products
-router.get("/product", async (req, res) => {
-  let result = await product.findAll({ order: Sequelize.literal("id DESC") });
-  res.json(result);
-});
+router.get(
+  "/product",
+  (req, res, next) => {
+    if (req.query.token == "1234") {
+      next();
+    } else {
+      res.status(401).json({ result: "no token" });
+    }
+  },
+  async (req, res) => {
+    let result = await product.findAll({ order: Sequelize.literal("id DESC") });
+    res.json(result);
+  }
+);
 
 // Add Product
 router.post("/product", async (req, res) => {
