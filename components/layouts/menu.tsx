@@ -16,6 +16,7 @@ import TimelineIcon from "@material-ui/icons/Timeline";
 import HomeWorkIcon from "@material-ui/icons/HomeWork";
 import { MenuType } from "../../types/menu.types";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const drawerWidth = 240;
 
@@ -41,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    isActive: {
+      backgroundColor: "#e0f5fd",
+      color: "#0080ff",
+    },
   })
 );
 
@@ -51,7 +56,8 @@ const menus: MenuType[] = [
 
 export default function Menu() {
   const classes = useStyles();
-
+  const router = useRouter();
+  
   return (
     <Drawer
       className={classes.drawer}
@@ -66,7 +72,11 @@ export default function Menu() {
           {menus.map(({ title, icon, path }, index) => {
             return (
               <Link href={path}>
-                <ListItem button key={title}>
+                <ListItem
+                  button
+                  key={title}
+                  className={router.pathname == path ? classes.isActive : ""}
+                >
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={title} />
                 </ListItem>
