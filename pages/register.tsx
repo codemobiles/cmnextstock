@@ -62,7 +62,12 @@ export default function Register({}: Props): ReactElement {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <form noValidate>
+            <form
+              noValidate
+              onSubmit={() => {
+                dispatch(actions.register(account));
+              }}
+            >
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -94,13 +99,10 @@ export default function Register({}: Props): ReactElement {
               />
 
               <Button
-                type="button"
+                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => {
-                  dispatch(actions.register(account));
-                }}
                 className={classes.submit}
               >
                 Register
