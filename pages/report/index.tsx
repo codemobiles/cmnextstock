@@ -91,7 +91,7 @@ export default function Report({}: Props): ReactElement {
 
   return (
     <Layout>
-      <Typography variant="h3">Sale Chart</Typography>
+      <Typography variant="h3">Report</Typography>
       <ButtonGroup
         size="large"
         color="primary"
@@ -124,7 +124,6 @@ export default function Report({}: Props): ReactElement {
       >
         <RefreshIcon />
       </IconButton>
-
       <div style={{ height: 500 }}>
         {chartType === "line" && (
           <Line data={data} width={100} height={50} options={chartOption} />
