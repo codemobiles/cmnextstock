@@ -100,7 +100,7 @@ export default function Stock({}: Props): ReactElement {
 
   const actions: Action<any>[] = [
     {
-      icon: () => <Edit color="secondary" />,
+      icon: () => <Edit color="secondary" style={{ color: "#91979c" }} />,
       tooltip: "Edit",
       onClick: (event, rowData) => {
         Router.push(`/stock/edit?id=${rowData.id}`);

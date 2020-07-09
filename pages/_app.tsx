@@ -5,15 +5,29 @@ import Head from "next/head";
 import { wrapper } from "../redux";
 import httpClient, { setInterceptor } from "./../utils/httpClient";
 import { useDispatch } from "react-redux";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 interface Props {}
 
 function CMApp({ Component, pageProps }: AppProps) {
+  // https://material-ui.com/customization/theming/
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#135ab8",
+      },
+      secondary: {
+        main: "#e85f5f",
+      },
+    },
+  });
 
   setInterceptor(useDispatch());
   return (
     <>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }
