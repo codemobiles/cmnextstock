@@ -3,7 +3,7 @@ import actions from "../actions"
 import httpClient from "../../utils/httpClient"
 import Router from 'next/router';
 
-export function* sagaStockCreate({ payload }) {
+export function* sagaStockCreate({ payload }: any) {
     try {
         yield put(actions.stockCreateFetching())
         yield delay(2000)
