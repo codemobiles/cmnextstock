@@ -67,7 +67,7 @@ export default function StockEdit({
   const showForm = ({ values, setFieldValue, isValid, dirty }) => {
     return (
       <Form>
-        <Card className={classes.card}>
+        <Card className={classes.card} elevation={10}>
           <CardContent>
             <Typography gutterBottom variant="h3">
               Edit Stock

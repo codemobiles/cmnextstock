@@ -51,7 +51,7 @@ export default function StockCreate({}: Props): ReactElement {
   const showForm = ({ values, setFieldValue, isValid, dirty }) => {
     return (
       <Form>
-        <Card className={classes.card}>
+        <Card className={classes.card} elevation={10}>
           <CardContent>
             <Typography gutterBottom variant="h3">
               Create Stock

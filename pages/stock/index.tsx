@@ -4,7 +4,7 @@ import Menu from "../../components/layouts/menu";
 import Layout from "../../components/layouts/layout";
 import MaterialTable, { Action, MTableToolbar } from "material-table";
 import { products } from "../api/dummy";
-import { Typography, Chip, Button } from "@material-ui/core";
+import { Typography, Chip, Button, Paper } from "@material-ui/core";
 import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
@@ -178,9 +178,16 @@ export default function Stock({}: Props): ReactElement {
         columns={columns}
         data={stockListReducer.result ? stockListReducer.result : []}
         title="Stock"
-        options={{ search: true }}
+        options={{
+          search: true,
+          pageSize: 8,
+          rowStyle: (rowData, index) => ({
+            backgroundColor: index % 2 == 0 ? "#f8faf9" : "#fff",
+          }),
+        }}
         actions={actions}
         components={{
+          Container: (props) => <Paper {...props} elevation={10} />,
           Toolbar: (props) => (
             <div>
               <MTableToolbar {...props} />

@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
-      paddingLeft: 240,
+      paddingLeft: 280,
+      height: "100vh",
+      backgroundColor: "#ffffff",
+      backgroundPosition: "bottom",
     },
   })
 );
