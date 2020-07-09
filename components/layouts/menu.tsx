@@ -70,12 +70,13 @@ export default function Menu() {
       <div className={classes.drawerContainer}>
         <List>
           {menus.map(({ title, icon, path }, index) => {
+            const rootPath = "/" + router.pathname.split("/")[1];
             return (
               <Link href={path}>
                 <ListItem
                   button
                   key={title}
-                  className={router.pathname == path ? classes.isActive : ""}
+                  className={rootPath == path ? classes.isActive : ""}
                 >
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={title} />
