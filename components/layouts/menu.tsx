@@ -18,7 +18,7 @@ import { MenuType } from "../../types/menu.types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      backgroundImage: 'url("/static/img/background_menu.png")',
+      backgroundRepeat: "no-repeat",
+      backgroundColor: "#f2fcff",
+      backgroundPosition: "bottom",
     },
     drawerContainer: {
       overflow: "auto",
@@ -43,8 +47,12 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
     },
     isActive: {
-      backgroundColor: "#e0f5fd",
-      color: "#0080ff",
+      backgroundColor: "#338bff",
+      color: "#FFF",
+    },
+    banner: {
+      height: 290,
+      width: "100%",
     },
   })
 );
@@ -57,7 +65,7 @@ const menus: MenuType[] = [
 export default function Menu() {
   const classes = useStyles();
   const router = useRouter();
-  
+
   return (
     <Drawer
       className={classes.drawer}
@@ -68,6 +76,13 @@ export default function Menu() {
     >
       <Toolbar />
       <div className={classes.drawerContainer}>
+        <img
+          src="/static/img/menu_banner.jpg"
+          alt=""
+          className={classes.banner}
+        />
+        <Divider />
+
         <List>
           {menus.map(({ title, icon, path }, index) => {
             const rootPath = "/" + router.pathname.split("/")[1];
@@ -78,7 +93,11 @@ export default function Menu() {
                   key={title}
                   className={rootPath == path ? classes.isActive : ""}
                 >
-                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemIcon
+                    style={{ color: rootPath == path ? "white" : "black" }}
+                  >
+                    {icon}
+                  </ListItemIcon>
                   <ListItemText primary={title} />
                 </ListItem>
               </Link>
