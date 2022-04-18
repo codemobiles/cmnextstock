@@ -12,7 +12,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@types/js-cookie": "^2.2.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.9.3",
     "cors": "^2.8.5",
