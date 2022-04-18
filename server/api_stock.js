@@ -12,14 +12,14 @@ const jwt = require("./jwt");
 // Upload Image
 uploadImage = async (files, doc) => {
   if (files.image != null) {
-    var fileExtention = files.image.name.split(".")[1];
+    var fileExtention = files.image.originalFilename.split(".")[1];
     doc.image = `${doc.id}.${fileExtention}`;
     var newpath =
       path.resolve(__dirname + "/uploaded/images/") + "/" + doc.image;
-    if (fs.exists(newpath)) {
+    if (fs.existsSync(newpath)) {
       await fs.remove(newpath);
     }
-    await fs.moveSync(files.image.path, newpath);
+    await fs.moveSync(files.image.filepath, newpath);
 
     // Update database
     let result = product.update(
@@ -54,7 +54,7 @@ router.post("/product", jwt.verify, async (req, res) => {
 });
 
 // Update Product
-router.put("/product",jwt.verify, async (req, res) => {
+router.put("/product", jwt.verify, async (req, res) => {
   try {
     var form = new formidable.IncomingForm();
     form.parse(req, async (err, fields, files) => {
